@@ -21,4 +21,7 @@ for value1 in numbers:
           if sum == 2020:
               print (value1 * value2 * value3)
               break
+#the for loops run through the lists created above to find the 3 numbers that sum to 2020, once the successful trio of numbers is found, the program will print their product and stop running
+
+
 
