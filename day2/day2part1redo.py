@@ -18,10 +18,13 @@ for item in f.readlines():
     #counts how many letters are in each password and assigns to a variable
     if (lower <= totalNumberOfLetters) and ( upper >= totalNumberOfLetters):
         goodPasswords += 1
+        #if the total number of letters meets the rule, then the goodPasswords variable adds one for each correct password
     else:
         badPasswords += 1
+        #if the password does not meet the rule, the badPasswords variable adds one
 
 print (goodPasswords)
 print (badPasswords)
+#both variables are printed 
 
    
