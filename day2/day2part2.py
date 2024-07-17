@@ -15,20 +15,12 @@ for item in f.readlines():
     #first character in string so here it is removing the letter from the colon
     first,second = number.split("-")
     #splits each rule for the numbers into the first and second place it needs to appear in the password
-    if (letter == password[int(first)-1]):
+    if (letter == password[int(first)-1]) and (letter is not password[int(second)-1]):
         goodPasswords += 1
-        #if the letter is in the first place it needs to be, add one to the goodPasswords
-        if (letter == password[int(second)-1]):
-            goodPasswords -= 1
-            badPasswords += 1
-            #if the letter is also in the second place it needs to be, subtract one from the goodPasswords and add one to the badPasswords
-    if (letter == password[int(second)-1]):
+        #if the letter is in the first place and not the second place, a point is added to goodPasswords
+    elif (letter == password[int(second)-1]) and (letter is not password[int(first)-1]):
         goodPasswords += 1
-        #if the letter is in the second place it needs to be, add one to the goodPasswords
-        if (letter == password[int(first)-1]):
-            goodPasswords -= 1
-            badPasswords += 1
-            #if the letter is also in the first place it needs to be, subtract one from the goodPasswords and add one to the badPasswords
+        #if the letter is in the second place and not the first place, a point is added to badPasswords
     else:
         badPasswords += 1
         #if the password does not follow the rules, it is added to badPasswords
