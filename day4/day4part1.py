@@ -2,6 +2,8 @@
 
 #Count the number of valid passports - those that have all required fields. Treat cid as optional. In your batch file, how many passports are valid?
 
+#used solution for lines 18-26
+
 validPassports = 0
 passport = ""
 groupList = []
@@ -37,7 +39,6 @@ for passport in groupList:
     if all(item in fields for item in necessary):
         #if all necessary keywords are present in the password, add one point to validPassports
         validPassports += 1
-    
 
 print(validPassports)
 #print final number
