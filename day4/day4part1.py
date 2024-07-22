@@ -2,37 +2,42 @@
 
 #Count the number of valid passports - those that have all required fields. Treat cid as optional. In your batch file, how many passports are valid?
 
-invalidPassports =0
 validPassports = 0
-#variables for invalid and valid passports
+passport = ""
+groupList = []
+#variables
 
 f = open("input.txt")
 #open input file
 
-necessary1 = "byr"
-necessary2 = "eyr"
-necessary3 = "iyr"
-necessary4 = "pid"
-necessary5 = "hcl"
-necessary6 = "hgt"
-necessary7 = "ecl"
-#state all necessary keywords
-necessary = necessary1 and necessary2 and necessary3 and necessary4 and necessary5 and necessary6 and necessary7
-#make all necessary keywords into a string
+necessary = ['byr', 'eyr', 'iyr', 'pid', 'hcl', 'hgt', 'ecl']
+#add all necessary keywords to a list
 
-for item in f.readlines():
-    #read through each line of code
-    item.split("\n")
-    #split code by empty space into lists
-    password = str(item)
-    #create variable that holds the password
-    if necessary in password:
-        validPassports += 1
-        #if necessary info is in the password, a point is added to valid passwords
+for line in f.readlines():
+#apply the code below to each line in the input
+    if line != "\n":
+        passport = passport + line
+        #if the line of code is not a blank line, add it to an empty variable called passport, which stores one passport at a time 
     else:
-        invalidPassports += 1
-        #if necessary info is not there, a point is added to invalid passwords
+        groupList.append(passport)
+        passport = ""
+        #if the line of code is a blank line, add it to the groupList and reset the password variable
+
+
+for passport in groupList:
+    #for each password, do as follows
+    fields = []
+    #create a new variable that stores each field of the password separately 
+    classifiers = passport.split()
+    #split the passport by white space
+    for item in classifiers:
+        #split each classifier into the necessary keyword and its corresponding data, and add the keyword to the fields variable
+        keyword, data = item.split(":")
+        fields.append(keyword)
+    if all(item in fields for item in necessary):
+        #if all necessary keywords are present in the password, add one point to validPassports
+        validPassports += 1
+    
 
 print(validPassports)
-print(invalidPassports)
-#print both variables
+#print final number
