@@ -4,8 +4,9 @@
 #and counter/accumlator variables
 
 inputList = []
-oneVoltage = []
-threeVoltage = []
+oneVoltage = 0
+twoVoltage = 0
+threeVoltage = 0
 charger = 0
 accumulator = 0
 #initialize 
@@ -14,32 +15,41 @@ accumulator = 0
 f = open("input.txt")
 
 for line in f.readlines():
-    inputList.append(line)
+    inputList.append(int(line))
 
 inputList.sort()
+#print(inputList)
 #sort input file in ascending order
 
-deviceChargingCapacity = inputList[len(inputList)-1]
+deviceChargingCapacity = inputList[-1]
 maxCharging = int(deviceChargingCapacity) + 3
 #find the highest charging capacity then the max charging capacity of the adapter
 
 print(deviceChargingCapacity)
+charger = 0
+#index = 0
+inputList.append(maxCharging)
 
-for item in range(0,len(inputList)-1):
+for index in range(0,len(inputList)):
+#while inputList[index] != deviceChargingCapacity:
     #this is accessing indexes in the list as opposed to output values
-    int(item)
-    charger = inputList[item]
     #charger is supposed to be defined as each corresponding output value based on the index
-    if int(inputList[item+1]) == (int(charger) + 1):
+    if (inputList[index] - charger) == 1:
         #if the charger below the current charger have a difference of 1, add it to the one voltage list
-        oneVoltage.append(item)
-    if int(inputList[item+1]) == (int(charger) + 3):
+        oneVoltage += 1
+    if (inputList[index] - charger) == 2:
+        #if the charger below the current charger have a difference of 1, add it to the one voltage list
+        twoVoltage += 1
+    if (inputList[index] - charger) == 3:
         #if the charger below the current charger have a difference of 3, add it to the three voltage list
-        threeVoltage.append(item)
+        threeVoltage += 1
+    charger = inputList[index]
 
 print(oneVoltage)
+print(twoVoltage)
 print(threeVoltage)
+# print(len(inputList))
 
-totalAnswer = len(oneVoltage) * len(threeVoltage)
+totalAnswer = oneVoltage * threeVoltage
 
 print(totalAnswer)
